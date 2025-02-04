@@ -44,7 +44,7 @@
     </style>
 </head>
 <body>
-    <h1>Catálogo de Imágenes</h1>
+    <h2>Productos Corte en Madera o MDF 2025</h2>
     <div class="grid" id="catalog"></div>
     <div class="pagination">
         <button onclick="prevPage()">Anterior</button>
@@ -93,7 +93,7 @@
             document.getElementById("modal").style.display = "block";
             document.getElementById("modalImg").src = imgSrc;
             document.getElementById("imageName").innerText = imgSrc;
-            document.getElementById("whatsappLink").href = `https://api.whatsapp.com/send/?phone=525548958970&text=Hola%2C+buen+d%C3%ADa&app_absent=0`;
+            document.getElementById("whatsappLink").href = `https://api.whatsapp.com/send/?phone=525548958970&text=Me%2C+interesa+${imgSrc}&app_absent=0`;
         }
 
         function closeModal() { document.getElementById("modal").style.display = "none"; }
