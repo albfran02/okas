@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Prueba de Conexión Google Sheets</title>
+</head>
+<body>
+    <h1>Prueba de Envío de Datos a Google Sheets</h1>
+    <p>Abre la consola del navegador (F12) para ver la respuesta.</p>
+    <button onclick="sendData()">Enviar Datos de Prueba</button>
+
+    <script>
+const url = 'https://script.google.com/macros/s/AKfycby5Ly3MieE8-800p2a7TJc3YmNJ2RpQWUYQcfW2GB2f7o-WRJSssJxY6ouayNtj_Zdm/exec'; 
+
+        async function sendData() {
+            console.log("📤 Intentando enviar datos...");
+            
+            const data = {
+                action: 'saveAnswer',
+                fecha: new Date().toISOString().split('T')[0],
+                usuario: 'UsuarioDePrueba',
+                pregunta_completa: 'Pregunta de prueba',
+                secuencia: '1, 2, 3',
+                tipo_patron: 'Prueba',
+                respuesta_correcta: '3',
+                respuesta_usuario: '3',
+                resultado: 'CORRECTO',
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                const response = await fetch(SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                console.log('✅ Respuesta exitosa:', result);
+                
+                if (result.result === 'success') {
+                    alert('¡Datos enviados correctamente! Revisa tu hoja de cálculo.');
+                } else {
+                    alert('Error en la respuesta del servidor.');
+                }
+
+            } catch (error) {
+                console.error('❌ Error al enviar datos:', error);
+                alert('❌ Fallo al conectar. Revisa la consola.');
+            }
+        }
+    </script>
+</body>
+</html>
+
+ 
